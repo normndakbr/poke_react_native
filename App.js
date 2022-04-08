@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View, Image, TextInput } from 'react-native';
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
       <Text>Chikorita</Text>
       <Photo />
       <TextInput style={{ borderWidth: 1 }}></TextInput>
+      <PokeBox />
     </View>
   );
 }
@@ -21,6 +22,12 @@ const Home = () => {
 
 const Photo = () => {
   return <Image source={{ uri: 'https://archives.bulbagarden.net/media/upload/thumb/0/0c/008Wartortle.png/250px-008Wartortle.png' }} style={{ height: 200, width: 200 }} />
+}
+
+class PokeBox extends Component {
+  render() {
+    return <Text>This PokeBox is a class component</Text>
+  }
 }
 
 export default App;
