@@ -1,8 +1,14 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 const App = () => {
-  return <Text>Hello World</Text>
+  return (
+    <View>
+      <Text>Cyndaquil</Text>
+      <Text>Totodile</Text>
+      <Text>Chikorita</Text>
+    </View>
+  );
 }
 
 export default App;
