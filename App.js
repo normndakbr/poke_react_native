@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TextInput, StyleSheet } from 'react-native';
 
+import ssbu from './assets/images/ssbu.png';
+
 const App = () => {
   return (
     <StylingReactNativeComponent />
@@ -10,26 +12,38 @@ const App = () => {
 const StylingReactNativeComponent = () => {
   return (
     <View>
-      <Text style={styles.text18}>Styling React Native Component</Text>
+      <Text style={styles.txtB18}>Styling React Native Component</Text>
       <View
         style={{
-          height: 250,
+          height: 350,
           width: 250,
-          backgroundColor: '#636e72',
+          backgroundColor: '#b2bec3',
           marginTop: 30,
           marginLeft: 30,
           borderWidth: 5,
           borderColor: '#2d3436',
-          borderRadius: 50,
+          borderRadius: 20,
+          padding: 20,
         }}
-      ></View>
+      >
+        <Image
+          source={ssbu}
+          style={{
+            height: 130,
+            width: 200,
+            borderWidth: 5,
+            borderColor: 'white',
+            borderRadius: 10,
+          }} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  text18: {
+  txtB18: {
     fontSize: 18,
+    fontWeight: 'bold',
   }
 });
 
