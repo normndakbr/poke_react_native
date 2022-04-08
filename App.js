@@ -1,18 +1,57 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { Text, View, Image, TextInput, StyleSheet } from 'react-native';
+import axios from 'axios';
 
 import ssbu from './assets/images/ssbu.png';
 
 const App = () => {
   return (
-    <StylingReactNativeComponent />
+    <Home />
+  );
+}
+
+function Home() {
+  // const { isLoading, error, data } = useQuery('fetchPokemonList', () => {
+  //   axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
+  // });
+
+
+  // if (error) return <h1>Error, Try Again</h1>
+  // if (isLoading) return <h1>Loading data...</h1>
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: '#ffeaa7' }}></View>
+      <View style={{ height: 58, flexDirection: 'row' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Image style={{ height: 26, width: 26 }} source={require('./icons/explore.png')} />
+          <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>PokéDEX</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Image style={{ height: 26, width: 26 }} source={require('./icons/pokemon.png')} />
+          <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>Pokémon</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Image style={{ height: 26, width: 26 }} source={require('./icons/backpack.png')} />
+          <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>Pack</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Image style={{ height: 26, width: 26 }} source={require('./icons/setting.png')} />
+          <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>Option</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Image style={{ height: 26, width: 26 }} source={require('./icons/about.png')} />
+          <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>About</Text>
+        </View>
+      </View>
+    </View>
   );
 }
 
 const StylingReactNativeComponent = () => {
   return (
     <View>
-      <Text style={styles.txtB18}>Styling React Native Component</Text>
+      <Text style={styles.txtB18}>Styling React Native Component 12</Text>
       <View
         style={{
           height: 350,
@@ -46,47 +85,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 });
-
-const SampleComponent = () => {
-  return (
-    <View>
-      <View style={{ width: 80, height: 80, backgroundColor: '#74b9ff' }}></View>
-      <Text>Cyndaquil</Text>
-      <Text>Pikachu</Text>
-      <Text>Totodile</Text>
-      <Text>Chikorita</Text>
-      <Photo />
-      <PokeBox />
-    </View>
-  );
-}
-
-const Photo = () => {
-  return (
-    <View>
-      <Image
-        source={{ uri: 'https://archives.bulbagarden.net/media/upload/thumb/0/0c/008Wartortle.png/250px-008Wartortle.png' }}
-        style={{ height: 80, width: 80 }} />
-      <Text
-        style={{ color: '#0984e3' }}
-      >Wartortle</Text>
-    </View>
-  );
-}
-
-class PokeBox extends Component {
-  render() {
-    return (
-      <View>
-        <Image
-          source={{ uri: 'https://archives.bulbagarden.net/media/upload/thumb/7/72/082Magneton.png/250px-082Magneton.png' }}
-          style={{ height: 80, width: 80 }} />
-        <Text
-          style={{ color: '#636e72' }}
-        >Magneton</Text>
-      </View>
-    );
-  }
-}
 
 export default App;
