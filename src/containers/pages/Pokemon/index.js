@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-export default function Home() {
+export default Pokemon = () => {
     return (
         <View>
-            <Text>Homepage</Text>
+            <Text> My Pokemon List </Text>
         </View>
     );
 }

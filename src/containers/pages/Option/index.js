@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-export default function Bagpack() {
+export default Option = () => {
     return (
         <View>
-            <Text>Bagpack</Text>
+            <Text> This is Option </Text>
         </View>
     );
 }
