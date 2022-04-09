@@ -1,17 +1,12 @@
-import React, { Component, useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { Text, View, Image, TextInput, StyleSheet } from 'react-native';
-import axios from 'axios';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import ssbu from './assets/images/ssbu.png';
+const Tab = createBottomTabNavigator();
 
-const App = () => {
-  return (
-    <Home />
-  );
-}
-
-function Home() {
+function Pokedex() {
   // const { isLoading, error, data } = useQuery('fetchPokemonList', () => {
   //   axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
   // });
@@ -22,13 +17,15 @@ function Home() {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1, marginHorizontal: 17, paddingTop: 15 }}>
+
         {/* Search Bar */}
         <View style={{ position: 'relative' }}>
           <TextInput placeholder='Find pokémon' style={{ borderWidth: 1, borderRadius: 25, borderColor: '#2d3436', height: 40, fontSize: 13, paddingLeft: 44, paddingRight: 20 }}></TextInput>
           <Image source={require('./icons/search.png')} style={{ position: 'absolute', top: 8, left: 12 }} />
         </View>
+
         {/* Filter Content */}
-        <View style={{ flex: 1, paddingTop: 15 }}>
+        <View style={{ paddingTop: 15 }}>
           <View style={{ backgroundColor: '#b2bec3', borderTopLeftRadius: 4, borderTopRightRadius: 4, padding: 14 }}>
             <Text style={{ color: 'white', fontSize: 16, fontWeight: '900' }}>Region</Text>
           </View>
@@ -51,27 +48,18 @@ function Home() {
             </View>
           </View>
         </View>
-      </View>
 
-
-      {/* Main Content */}
-      <View>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
-          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+        {/* Main Content */}
+        <View style={{ paddingTop: 15 }}>
+          <View style={{ justifyContent: 'space-between', flexDirection: 'row', flexWrap: 'wrap' }}>
+            <View style={{ margin: 7, height: 80, width: 68, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3', padding: 7 }}>
+              <Image source={{ uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png' }} style={{ height: '100%' }} />
+            </View>
+          </View>
         </View>
       </View>
+
+
 
       {/* Navigation Bar */}
       <View style={{ height: 58, flexDirection: 'row' }}>
@@ -100,34 +88,49 @@ function Home() {
   );
 }
 
-const StylingReactNativeComponent = () => {
+function Pokemon() {
   return (
     <View>
-      <Text style={styles.txtB18}>Styling React Native Component 12</Text>
-      <View
-        style={{
-          height: 350,
-          width: 250,
-          backgroundColor: '#b2bec3',
-          marginTop: 30,
-          marginLeft: 30,
-          borderWidth: 5,
-          borderColor: '#2d3436',
-          borderRadius: 20,
-          padding: 20,
-        }}
-      >
-        <Image
-          source={ssbu}
-          style={{
-            height: 130,
-            width: 200,
-            borderWidth: 5,
-            borderColor: 'white',
-            borderRadius: 10,
-          }} />
-      </View>
+      <Text> My Pokemon List </Text>
     </View>
+  );
+}
+
+function Pack() {
+  return (
+    <View>
+      <Text> My Pack List </Text>
+    </View>
+  );
+}
+
+function Option() {
+  return (
+    <View>
+      <Text> Options </Text>
+    </View>
+  );
+}
+
+function About() {
+  return (
+    <View>
+      <Text> About me </Text>
+    </View>
+  );
+}
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="PokéDEX" component={Pokedex} />
+        <Tab.Screen name="Pokémon" component={Pokemon} />
+        <Tab.Screen name="Pack" component={Pack} />
+        <Tab.Screen name="Option" component={Option} />
+        <Tab.Screen name="About" component={About} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
