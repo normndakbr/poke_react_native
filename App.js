@@ -21,7 +21,59 @@ function Home() {
   // if (isLoading) return <h1>Loading data...</h1>
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: '#ffeaa7' }}></View>
+      <View style={{ flex: 1, marginHorizontal: 17, paddingTop: 15 }}>
+        {/* Search Bar */}
+        <View style={{ position: 'relative' }}>
+          <TextInput placeholder='Find pokémon' style={{ borderWidth: 1, borderRadius: 25, borderColor: '#2d3436', height: 40, fontSize: 13, paddingLeft: 44, paddingRight: 20 }}></TextInput>
+          <Image source={require('./icons/search.png')} style={{ position: 'absolute', top: 8, left: 12 }} />
+        </View>
+        {/* Filter Content */}
+        <View style={{ flex: 1, paddingTop: 15 }}>
+          <View style={{ backgroundColor: '#b2bec3', borderTopLeftRadius: 4, borderTopRightRadius: 4, padding: 14 }}>
+            <Text style={{ color: 'white', fontSize: 16, fontWeight: '900' }}>Region</Text>
+          </View>
+          <View style={{ flexDirection: 'row', backgroundColor: '#dfe6e9', borderBottomLeftRadius: 4, borderBottomRightRadius: 4, padding: 20 }}>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+              <Image source={require('./icons/kanto.png')} />
+              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Kanto</Text>
+            </View>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+              <Image source={require('./icons/johto.png')} />
+              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Johto</Text>
+            </View>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+              <Image source={require('./icons/hoenn.png')} />
+              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Hoenn</Text>
+            </View>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+              <Image source={require('./icons/sinnoh.png')} />
+              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Sinnoh</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+
+
+      {/* Main Content */}
+      <View>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+          <View style={{ height: 58, width: 58, borderWidth: 1, borderRadius: 18, borderColor: '#b2bec3' }}></View>
+        </View>
+      </View>
+
+      {/* Navigation Bar */}
       <View style={{ height: 58, flexDirection: 'row' }}>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Image style={{ height: 26, width: 26 }} source={require('./icons/explore.png')} />
@@ -44,7 +96,7 @@ function Home() {
           <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>About</Text>
         </View>
       </View>
-    </View>
+    </View >
   );
 }
 
