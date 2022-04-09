@@ -7,7 +7,7 @@ import Pokedex from './src/containers/pages/Pokedex';
 import Pokemon from './src/containers/pages/Pokemon';
 import Backpack from './src/containers/pages/Backpack';
 import Option from './src/containers/pages/Option';
-import About from './src/containers/pages/Pokedex';
+import About from './src/containers/pages/About';
 import exploreIcon from './src/assets/icons/explore.png';
 import pokemonIcon from './src/assets/icons/pokemon.png';
 import backpackIcon from './src/assets/icons/backpack.png';
