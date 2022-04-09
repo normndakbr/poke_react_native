@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { ScrollView, View, Text, Image, TextInput } from 'react-native';
+import searchIcon from '../../../assets/icons/search.png';
 import kantoIcon from '../../../assets/icons/kanto.png';
 import johtoIcon from '../../../assets/icons/johto.png';
 import hoennIcon from '../../../assets/icons/hoenn.png';
@@ -10,7 +11,7 @@ import RegionList from '../../../components/molecules/RegionList';
 import PokemonCard from '../../../components/molecules/PokemonCard';
 
 const getPokemonData = async () => {
-  const URL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20';
+  const URL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151';
   const res = await fetch(URL);
   const data = await res.json();
 
@@ -31,7 +32,7 @@ export default Pokedex = () => {
         {/* Search Bar */}
         <View style={{ position: 'relative' }}>
           <TextInput placeholder='Find pokémon' style={{ borderWidth: 1, borderRadius: 25, borderColor: '#2d3436', height: 40, fontSize: 13, paddingLeft: 44, paddingRight: 20 }}></TextInput>
-          <Image source={require('../../../assets/icons/search.png')} style={{ position: 'absolute', top: 8, left: 12 }} />
+          <Image source={searchIcon} style={{ position: 'absolute', top: 8, left: 12 }} />
         </View>
 
         {/* Filter Content */}
@@ -50,17 +51,9 @@ export default Pokedex = () => {
         {/* Main Content */}
         <View style={{ paddingTop: 15 }}>
           <View style={{ justifyContent: 'space-between', flexDirection: 'row', flexWrap: 'wrap' }}>
-            {pokemons.map(({ name, url }) => (
-              // <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png' />
-              <PokemonCard name={name} />
+            {pokemons.map(({ name, url }, index) => (
+              <PokemonCard key={index} name={name} url={url} />
             ))}
-            {/* <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png' /> */}
           </View>
         </View>
       </View>
