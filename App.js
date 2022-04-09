@@ -8,9 +8,22 @@ import pokemonIcon from './src/assets/icons/pokemon.png';
 import backpackIcon from './src/assets/icons/backpack.png';
 import optionIcon from './src/assets/icons/option.png';
 import aboutIcon from './src/assets/icons/about.png';
+import kantoIcon from './src/assets/icons/kanto.png';
+import johtoIcon from './src/assets/icons/johto.png';
+import hoennIcon from './src/assets/icons/hoenn.png';
+import sinnohIcon from './src/assets/icons/sinnoh.png';
 
 
 const Tab = createBottomTabNavigator();
+
+const RegionList = (props) => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center' }}>
+      <Image source={props.regionImage} />
+      <Text style={{ marginTop: 4, color: '#545454', fontWeight: '800', fontSize: 12 }}>{props.regionTitle}</Text>
+    </View>
+  );
+}
 
 const Pokedex = () => {
   // const { isLoading, error, data } = useQuery('fetchPokemonList', () => {
@@ -27,7 +40,7 @@ const Pokedex = () => {
         {/* Search Bar */}
         <View style={{ position: 'relative' }}>
           <TextInput placeholder='Find pokémon' style={{ borderWidth: 1, borderRadius: 25, borderColor: '#2d3436', height: 40, fontSize: 13, paddingLeft: 44, paddingRight: 20 }}></TextInput>
-          <Image source={require('./icons/search.png')} style={{ position: 'absolute', top: 8, left: 12 }} />
+          <Image source={require('./src/assets/icons/search.png')} style={{ position: 'absolute', top: 8, left: 12 }} />
         </View>
 
         {/* Filter Content */}
@@ -36,22 +49,10 @@ const Pokedex = () => {
             <Text style={{ color: 'white', fontSize: 16, fontWeight: '900' }}>Region</Text>
           </View>
           <View style={{ flexDirection: 'row', backgroundColor: '#dfe6e9', borderBottomLeftRadius: 4, borderBottomRightRadius: 4, padding: 20 }}>
-            <View style={{ flex: 1, alignItems: 'center' }}>
-              <Image source={require('./src/assets/icons/kanto.png')} />
-              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Kanto</Text>
-            </View>
-            <View style={{ flex: 1, alignItems: 'center' }}>
-              <Image source={require('./src/assets/icons/johto.png')} />
-              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Johto</Text>
-            </View>
-            <View style={{ flex: 1, alignItems: 'center' }}>
-              <Image source={require('./src/assets/icons/hoenn.png')} />
-              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Hoenn</Text>
-            </View>
-            <View style={{ flex: 1, alignItems: 'center' }}>
-              <Image source={require('./src/assets/icons/sinnoh.png')} />
-              <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 12 }}>Sinnoh</Text>
-            </View>
+            <RegionList regionImage={kantoIcon} regionTitle="Kanto" />
+            <RegionList regionImage={johtoIcon} regionTitle="Johto" />
+            <RegionList regionImage={hoennIcon} regionTitle="Hoenn" />
+            <RegionList regionImage={sinnohIcon} regionTitle="Sinnoh" />
           </View>
         </View>
 
