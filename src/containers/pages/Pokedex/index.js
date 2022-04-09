@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TextInput } from 'react-native';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { ScrollView, View, Text, Image, TextInput } from 'react-native';
 import kantoIcon from '../../../assets/icons/kanto.png';
 import johtoIcon from '../../../assets/icons/johto.png';
 import hoennIcon from '../../../assets/icons/hoenn.png';
@@ -7,14 +9,23 @@ import sinnohIcon from '../../../assets/icons/sinnoh.png';
 import RegionList from '../../../components/molecules/RegionList';
 import PokemonCard from '../../../components/molecules/PokemonCard';
 
+const getPokemonData = async () => {
+  const URL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20';
+  const res = await fetch(URL);
+  const data = await res.json();
+
+  return data;
+}
+
 export default Pokedex = () => {
-  // const { data, status, error } = useQuery("users", FetchPokemonList);
+  const { isLoading, data, error } = useQuery('pokemonData', getPokemonData);
 
+  if (error) return <Text>Error, Try Again</Text>
+  if (isLoading) return <Text>Loading data...</Text>
+  const { results: pokemons } = data;
 
-  // if (error) return <h1>Error, Try Again</h1>
-  // if (status == 'loading') return <h1>Loading data...</h1>
   return (
-    <View style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }}>
       <View style={{ flex: 1, marginHorizontal: 17, paddingTop: 15 }}>
 
         {/* Search Bar */}
@@ -39,14 +50,17 @@ export default Pokedex = () => {
         {/* Main Content */}
         <View style={{ paddingTop: 15 }}>
           <View style={{ justifyContent: 'space-between', flexDirection: 'row', flexWrap: 'wrap' }}>
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png' />
+            {pokemons.map(({ name, url }) => (
+              // <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png' />
+              <PokemonCard name={name} />
+            ))}
+            {/* <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png' />
             <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png' />
             <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png' />
             <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png' />
             <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png' />
             <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png' />
-            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png' />
+            <PokemonCard pokemonSprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png' /> */}
           </View>
         </View>
       </View>
@@ -76,6 +90,6 @@ export default Pokedex = () => {
             <Text style={{ marginTop: 3, color: '#545454', fontWeight: '800', fontSize: 10 }}>About</Text>
           </View>
         </View> */}
-    </View >
+    </ScrollView >
   );
 }
