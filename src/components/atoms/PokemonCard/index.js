@@ -1,6 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, ActivityIndicator, Image, Text, View } from 'react-native';
 import { useQuery } from 'react-query';
+import { useNavigation, NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const getSprites = async (url) => {
     let res = await fetch(url);
@@ -11,8 +13,16 @@ const getSprites = async (url) => {
 
 export default PokemonCard = (props) => {
     const { isLoading, data, error } = useQuery(['pokemonSprite', props.url], () => getSprites(props.url));
+    const navigation = useNavigation();
+
     const onTap = () => {
-        console.log('You tapped the button!');
+        navigation.push('PokemonDetail', {
+            name: pokemonName,
+            sprites: pokemonSprite,
+            moves: pokemonMoveset,
+            types: pokemonTypes,
+            abilities: pokemonAbilities
+        });
     }
 
     if (error) return <Text>Error, Try Again</Text>
@@ -23,6 +33,12 @@ export default PokemonCard = (props) => {
     );
 
     const { sprites: pokemonSprite } = data;
+    const { name: pokemonName } = data;
+    const { moves: pokemonMoveset } = data;
+    const { types: pokemonTypes } = data;
+    const { abilities: pokemonAbilities } = data;
+
+
 
     return (
         <View>
