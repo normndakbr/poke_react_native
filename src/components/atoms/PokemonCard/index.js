@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Text, View, Image } from 'react-native';
+import { TouchableOpacity, ActivityIndicator, Image, Text, View } from 'react-native';
 import { useQuery } from 'react-query';
 
 const getSprites = async (url) => {
@@ -8,8 +8,12 @@ const getSprites = async (url) => {
     return data;
 }
 
+
 export default PokemonCard = (props) => {
     const { isLoading, data, error } = useQuery(['pokemonSprite', props.url], () => getSprites(props.url));
+    const onTap = () => {
+        console.log('You tapped the button!');
+    }
 
     if (error) return <Text>Error, Try Again</Text>
     if (isLoading) return (
@@ -21,8 +25,12 @@ export default PokemonCard = (props) => {
     const { sprites: pokemonSprite } = data;
 
     return (
-        <View style={{ margin: 6, height: 80, width: 68, borderWidth: 1, borderRadius: 5, borderColor: '#b2bec3', padding: 7 }}>
-            <Image source={{ uri: pokemonSprite.front_default }} style={{ height: '100%' }} />
+        <View>
+            <TouchableOpacity onPress={onTap}>
+                <View on style={{ margin: 6, height: 80, width: 68, borderWidth: 1, borderRadius: 5, borderColor: '#b2bec3', padding: 7 }}>
+                    <Image source={{ uri: pokemonSprite.front_default }} style={{ height: '100%' }} />
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }
