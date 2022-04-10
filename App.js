@@ -3,7 +3,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Text, View, Image, TextInput, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Pokedex from './src/containers/pages/Pokedex';
+import PokedexStackNavigator from './src/config/routes/index';
+// import Pokedex from './src/containers/pages/Pokedex';
 import Pokemon from './src/containers/pages/Pokemon';
 import Backpack from './src/containers/pages/Backpack';
 import Option from './src/containers/pages/Option';
@@ -45,11 +46,12 @@ export default App = () => {
             tabBarInactiveTintColor: '#2d3436',
           })}
         >
-          <Tab.Screen name="PokéDEX" component={Pokedex} />
-          <Tab.Screen name="Pokémon" component={Pokemon} />
-          <Tab.Screen name="Backpack" component={Backpack} />
-          <Tab.Screen name="Option" component={Option} />
-          <Tab.Screen name="About" component={About} />
+          {/* <Tab.Screen name='PokéDEX' component={Pokedex} /> */}
+          <Tab.Screen name='PokéDEX' component={PokedexStackNavigator} />
+          <Tab.Screen name='Pokémon' component={Pokemon} />
+          <Tab.Screen name='Backpack' component={Backpack} />
+          <Tab.Screen name='Option' component={Option} />
+          <Tab.Screen name='About' component={About} />
         </Tab.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
