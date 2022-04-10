@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 
-export default RegionList = (props) => {
+export default RegionItem = (props) => {
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
             <Image source={props.regionImage} />

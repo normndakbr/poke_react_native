@@ -17,12 +17,7 @@ import aboutIcon from './src/assets/icons/about.png';
 const Tab = createBottomTabNavigator();
 const queryClient = new QueryClient();
 
-const FetchPokemonList = async () => {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
-  return res.json();
-}
-
-const App = () => {
+export default App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
@@ -67,5 +62,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 });
-
-export default App;
