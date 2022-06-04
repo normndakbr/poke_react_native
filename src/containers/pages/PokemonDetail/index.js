@@ -19,8 +19,20 @@ export default PokemonDetail = () => {
 
     return (
         <ScrollView>
-            <View>
-                <Text>Pokemon Detail Page</Text>
+            <View style={{ marginHorizontal: 40, marginVertical: 10 }}>
+                <View>
+                    <Image source={{ uri: sprites.front_default }} style={{ flex: 1, resizeMode: 'contain', aspectRatio: 1 }} />
+                </View>
+
+                <View style={{ backgroundColor: '#b2bec3', borderTopLeftRadius: 10, borderTopRightRadius: 10, padding: 14 }}>
+                    <Text style={{ color: 'white', fontSize: 16, fontWeight: '900' }}>{`${name.charAt(0).toUpperCase() + name.slice(1)}`}</Text>
+                </View>
+                {/* <View style={{ flexDirection: 'row', backgroundColor: '#dfe6e9', borderBottomLeftRadius: 4, borderBottomRightRadius: 4, padding: 20 }}> */}
+                {/* <RegionItem regionImage={kantoIcon} regionTitle="Kanto" />
+                    <RegionItem regionImage={johtoIcon} regionTitle="Johto" />
+                    <RegionItem regionImage={hoennIcon} regionTitle="Hoenn" />
+                    <RegionItem regionImage={sinnohIcon} regionTitle="Sinnoh" /> */}
+                {/* </View> */}
             </View>
         </ScrollView>
     );

@@ -40,10 +40,13 @@ export default App = () => {
                 iconUri = aboutIcon;
               }
 
-              return <Image style={{ height: 26, width: 26 }} source={iconUri} />;
+              return <Image style={{ height: 20, width: 20 }} source={iconUri} />;
             },
             tabBarActiveTintColor: '#0984e3',
             tabBarInactiveTintColor: '#2d3436',
+            tabBarLabelStyle: {
+              paddingBottom: 10,
+            },
           })}
         >
           {/* <Tab.Screen name='PokéDEX' component={Pokedex} /> */}
@@ -54,7 +57,7 @@ export default App = () => {
           <Tab.Screen name='About' component={About} />
         </Tab.Navigator>
       </NavigationContainer>
-    </QueryClientProvider>
+    </QueryClientProvider >
   );
 }
 
