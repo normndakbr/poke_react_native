@@ -1,112 +1,69 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Text, View, Image, TextInput, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import PokedexStackNavigator from './src/config/routes/index';
+// import Pokedex from './src/containers/pages/Pokedex';
+import Pokemon from './src/containers/pages/Pokemon';
+import Backpack from './src/containers/pages/Backpack';
+import Option from './src/containers/pages/Option';
+import About from './src/containers/pages/About';
+import exploreIcon from './src/assets/icons/explore.png';
+import pokemonIcon from './src/assets/icons/pokemon.png';
+import backpackIcon from './src/assets/icons/backpack.png';
+import optionIcon from './src/assets/icons/option.png';
+import aboutIcon from './src/assets/icons/about.png';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Tab = createBottomTabNavigator();
+const queryClient = new QueryClient();
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+export default App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarIcon: () => {
+              let iconUri;
+
+              if (route.name === 'PokéDEX') {
+                iconUri = exploreIcon;
+              } else if (route.name === 'Pokémon') {
+                iconUri = pokemonIcon;
+              } else if (route.name === 'Backpack') {
+                iconUri = backpackIcon;
+              } else if (route.name === 'Option') {
+                iconUri = optionIcon;
+              } else if (route.name === 'About') {
+                iconUri = aboutIcon;
+              }
+
+              return <Image style={{ height: 20, width: 20 }} source={iconUri} />;
+            },
+            tabBarActiveTintColor: '#0984e3',
+            tabBarInactiveTintColor: '#2d3436',
+            tabBarLabelStyle: {
+              paddingBottom: 10,
+            },
+          })}
+        >
+          {/* <Tab.Screen name='PokéDEX' component={Pokedex} /> */}
+          <Tab.Screen name='PokéDEX' component={PokedexStackNavigator} />
+          <Tab.Screen name='Pokémon' component={Pokemon} />
+          <Tab.Screen name='Backpack' component={Backpack} />
+          <Tab.Screen name='Option' component={Option} />
+          <Tab.Screen name='About' component={About} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider >
   );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
+  txtB18: {
     fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+    fontWeight: 'bold',
+  }
 });
-
-export default App;
